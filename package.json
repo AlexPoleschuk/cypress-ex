@@ -1,0 +1,23 @@
+{
+  "name": "cypress-ex",
+  "author": {
+    "name": "Alex Poleschuk",
+    "email": "imalexp@ya.ru"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlexPoleschuk/cypress-ex"
+  },
+  "license": "MIT",
+  "packageManager": "yarn@4.0.2",
+  "scripts": {
+    "test:view": "cypress open --e2e -b chrome -d"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "cypress": "^13.6.4"
+  }
+}
