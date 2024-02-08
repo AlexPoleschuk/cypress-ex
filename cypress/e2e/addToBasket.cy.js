@@ -1,6 +1,10 @@
 // @ts-nocheck
 /// <reference types="cypress" />
 
+const { hideBackgroundRequests } = require("../support/hideBadCalls");
+
+hideBackgroundRequests();
+
 describe('Добавление товара в корзину', () => {
     before(() => {
         cy.fullLogin('stage');

@@ -1,6 +1,10 @@
 // @ts-nocheck
 /// <reference types="cypress" />
 
+const { hideBackgroundRequests } = require("../support/hideBadCalls");
+
+hideBackgroundRequests();
+
 describe('Авторизация на сайте citilink.ru', () => {
   before(() => {
     cy.setDesktopView();
