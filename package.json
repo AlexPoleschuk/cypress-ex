@@ -11,7 +11,9 @@
   "license": "MIT",
   "packageManager": "yarn@4.0.2",
   "scripts": {
-    "test:view": "cypress open --e2e -b chrome -d"
+    "test:view": "cypress open --e2e -b chrome -d",
+    "test:run:auth": "cypress run --e2e -b chrome -s \"cypress/e2e/auth.cy.js\"",
+    "test:run:basket": "cypress run --e2e -b chrome -s \"cypress/e2e/addToBasket.cy.js\""
   },
   "engines": {
     "node": ">=18"
