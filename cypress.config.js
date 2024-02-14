@@ -40,17 +40,7 @@ module.exports = defineConfig({
         configFile: "reporter-telegram.json",
     },
     setupNodeEvents(on, config) {
-        // on("before:run", (on,config) => {
-        //   console.log(on,config);
-        // })
-        // console.log(on,config);
-        // telegramReporter(on, config);
-        // on("after:run", ()=>{
-        //   console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-        //   fetch(`https://api.telegram.org/bot%5B${telegram.botToken}%5D/sendMessage?chat_id=%5B${telegram.chatId}%5D&text=%5BMY_MESSAGE_TEXT%5D`)
-        // })
         on("after:spec", (spec, results) => {
-            // console.log(spec, results , "<<<<<<<<<<<<<<<<<");
             if (results && results.video) {
                 const failures = results.tests.some((test) =>
                     test.attempts.some((attempt) => attempt.state === "failed")
@@ -63,5 +53,4 @@ module.exports = defineConfig({
     },
     screenshotsFolder: "cypress/screenshots",
     videosFolder: "cypress/videos",
-    // reporter: 'cypress-telegram-reporter',
 });
