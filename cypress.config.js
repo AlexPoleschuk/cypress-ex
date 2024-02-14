@@ -23,7 +23,7 @@ module.exports = defineConfig({
         setupNodeEvents(on, config) {
             config.env = {
                 telegram: {
-                    includeStats: false,
+                    includeStats: true,
                     finalReport : 'merged-report.json'
                 },
             }
