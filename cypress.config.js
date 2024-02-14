@@ -22,11 +22,7 @@ module.exports = defineConfig({
         ],
         setupNodeEvents(on, config) {
             config.env = {
-                BOT_TOKEN: "6809103143:AAHTNtGcs5UBOqkGZLWdtMJ60WCi6rLpXeU",
-                CHAT_ID: "277383731",
                 telegram: {
-                    botToken: "6809103143:AAHTNtGcs5UBOqkGZLWdtMJ60WCi6rLpXeU",
-                    chatId: "277383731",
                     includeStats: false,
                     finalReport : 'merged-report.json'
                 },
