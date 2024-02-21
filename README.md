@@ -6,7 +6,7 @@ Easy Setup:
 
 1. run command: yarn install
 
-2. add your auth data to `cypress/fixtures/login.json`
+2. add your auth data to `cypress/fixtures/auth.ts`
 
 3. or use `--env` variables with commands, like:
 
