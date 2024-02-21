@@ -1,8 +1,6 @@
 // @ts-nocheck
 /// <reference types="cypress" />
 
-const authData = require("../fixtures/login.json");
-
 const origin = {
     production: 'https://www.citilink.ru/',
     stage: 'https://www.citilink.stage.citilink.lt/',
@@ -16,7 +14,7 @@ Cypress.Commands.add('goToMainPage', (env) => {
     cy.visit(origin[env]);
 });
 
-Cypress.Commands.add('login', (login = authData.email, password = authData.password) => {
+Cypress.Commands.add('login', (login, password) => {
     cy.get('[data-meta-name="UserButtonContainer"]')
         .contains("Войти")
         .click();
