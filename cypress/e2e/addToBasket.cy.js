@@ -1,13 +1,14 @@
 // @ts-nocheck
 /// <reference types="cypress" />
 
-const { hideBackgroundRequests } = require("../support/hideBadCalls");
+import { EnvType } from "../fixtures/environment.ts";
+import { hideBackgroundRequests } from "../support/hideBadCalls.js";
 
 hideBackgroundRequests();
 
-describe('Добавление товара в корзину', () => {
+describe('Добавление товара в корзину (stage)', () => {
     before(() => {
-        cy.fullLogin('stage');
+        cy.fullLogin(EnvType.STAGE);
     });
 
     it('Покупка смартфона', () => {
