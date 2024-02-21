@@ -1,13 +1,15 @@
 // @ts-nocheck
 /// <reference types="cypress" />
 
+import defaultViewData from "../fixtures/view.ts";
+
 const origin = {
     production: 'https://www.citilink.ru/',
     stage: 'https://www.citilink.stage.citilink.lt/',
 };
 
 Cypress.Commands.add('setDesktopView', () => {
-    cy.viewport(1280, 1024);
+    cy.viewport(...defaultViewData.desktop);
 });
 
 Cypress.Commands.add('goToMainPage', (env) => {
