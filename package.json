@@ -13,8 +13,7 @@
   "scripts": {
     "test:view": "cypress open --e2e -b chrome -d",
     "test:run:auth": "cypress run --e2e -b chrome -s \"cypress/e2e/auth.cy.js\"",
-    "test:run:basket": "cypress run --e2e -b chrome -s \"cypress/e2e/addToBasket.cy.js\"",
-    "test:run:exampless": "cypress run --e2e -b chrome -s \"cypress/e2e/example.cy.js\""
+    "test:run:basket": "cypress run --e2e -b chrome -s \"cypress/e2e/addToBasket.cy.js\""
   },
   "engines": {
     "node": ">=18"
