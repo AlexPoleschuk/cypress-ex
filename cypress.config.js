@@ -15,6 +15,7 @@ module.exports = defineConfig({
             "*google-analytics.com",
             "ev.adriver.ru",
             "fga.citilink.ru",
+            "*.clarity.ms",
             "ctl-api.exponea.com",
             "vk.com",
             "getrcmx.com",
@@ -24,7 +25,7 @@ module.exports = defineConfig({
             config.env = {
                 telegram: {
                     includeStats: true,
-                    finalReport : 'merged-report.json'
+                    finalReport: 'merged-report.json'
                 },
             }
             telegramReporter(on, config);
