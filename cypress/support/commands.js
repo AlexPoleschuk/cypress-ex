@@ -2,14 +2,14 @@
 /// <reference types="cypress" />
 
 import defaultViewData from "../fixtures/view.ts";
-
-const origin = {
-    production: 'https://www.citilink.ru/',
-    stage: 'https://www.citilink.stage.citilink.lt/',
-};
+import origin from "../fixtures/origin.ts"
 
 Cypress.Commands.add('setDesktopView', () => {
     cy.viewport(...defaultViewData.desktop);
+});
+
+Cypress.Commands.add('setMobileView', () => {
+    cy.viewport(...defaultViewData.mobile);
 });
 
 Cypress.Commands.add('goToMainPage', (env) => {
@@ -19,7 +19,7 @@ Cypress.Commands.add('goToMainPage', (env) => {
 Cypress.Commands.add('login', (login, password) => {
     cy.get('[data-meta-name="UserButtonContainer"]')
         .contains("Войти")
-        .click();
+        .click({ force: true });
 
     cy.get('[data-meta-name="Popup"]').within(() => {
         cy.get('[name="login"]').type(login);
@@ -29,9 +29,8 @@ Cypress.Commands.add('login', (login, password) => {
 });
 
 Cypress.Commands.add('fullLogin', (env, login, password) => {
-    cy.setDesktopView()
-        .goToMainPage(env)
-        .login(login, password);
+    cy.goToMainPage(env);
+    cy.login(login, password);
 });
 
 Cypress.Commands.add('clearBasket', () => {

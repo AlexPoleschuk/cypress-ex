@@ -8,6 +8,7 @@ hideBackgroundRequests();
 
 describe('Добавление товара в корзину (stage)', () => {
     before(() => {
+        cy.setDesktopView();
         cy.fullLogin(EnvType.STAGE);
     });
 
