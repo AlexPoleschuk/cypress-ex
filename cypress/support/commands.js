@@ -2,11 +2,7 @@
 /// <reference types="cypress" />
 
 import defaultViewData from "../fixtures/view.ts";
-
-const origin = {
-    production: 'https://www.citilink.ru/',
-    stage: 'https://www.citilink.stage.citilink.lt/',
-};
+import origin from "../fixtures/origin.ts"
 
 Cypress.Commands.add('setDesktopView', () => {
     cy.viewport(...defaultViewData.desktop);

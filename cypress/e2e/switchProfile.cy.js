@@ -33,7 +33,7 @@ describe('Переключение профиля на b2c пользовате�
             .click({ force: true })
             .log('Переключение на b2c пользователя');
 
-        cy.visit('https://www.citilink.stage.citilink.lt/b2b/companies/switchContractor/?companyId=user&_from=/?_action=login&_success_login=1');
+        cy.visit('/b2b/companies/switchContractor/?companyId=user&_from=/?_action=login&_success_login=1');
 
         cy.contains("Профиль")
             .click()
