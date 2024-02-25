@@ -1,3 +1,2 @@
 export * as menu from './menu.js';
-
-export { default as getResultsMarkdown } from './markdown.js';
+export * as utils from './utils.js';
