@@ -1,9 +1,8 @@
-const { defineConfig } = require("cypress");
-const fs = require("fs");
+import { defineConfig } from "cypress";
+import fs from "fs";
 
-const telegramReporter = require("cypress-telegram-reporter");
-
-module.exports = defineConfig({
+const config = defineConfig({
+    retries: 3,
     e2e: {
         baseUrl: "https://www.citilink.stage.citilink.lt/",
         defaultCommandTimeout: 10000,
@@ -21,21 +20,8 @@ module.exports = defineConfig({
             "getrcmx.com",
             "monitoring-front-agent.svc.citilink.lt",
         ],
-        setupNodeEvents(on, config) {
-            config.env = {
-                telegram: {
-                    includeStats: true,
-                    finalReport: 'merged-report.json'
-                },
-            }
-            telegramReporter(on, config);
-        },
     },
     video: true,
-    reporter: "cypress-multi-reporters",
-    reporterOptions: {
-        configFile: "reporter-telegram.json",
-    },
     setupNodeEvents(on, config) {
         on("after:spec", (spec, results) => {
             if (results && results.video) {
@@ -51,3 +37,5 @@ module.exports = defineConfig({
     screenshotsFolder: "cypress/screenshots",
     videosFolder: "cypress/videos",
 });
+
+export default config;
