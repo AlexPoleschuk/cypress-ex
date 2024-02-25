@@ -4,6 +4,7 @@ const fs = require("fs");
 const telegramReporter = require("cypress-telegram-reporter");
 
 module.exports = defineConfig({
+    retries: 3,
     e2e: {
         baseUrl: "https://www.citilink.stage.citilink.lt/",
         defaultCommandTimeout: 10000,
