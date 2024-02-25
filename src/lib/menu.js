@@ -1,5 +1,5 @@
-const getMainMenu = (ctx) => {
-    ctx?.reply("Доступные тесты", {
+const getMainMenu = async (ctx) => {
+    await ctx?.reply("Доступные тесты", {
         resize_keyboard: true,
         parse_mode: 'html',
         reply_markup: {
@@ -16,8 +16,8 @@ const getMainMenu = (ctx) => {
     });
 };
 
-const getContinuationMenu = (ctx) => {
-    ctx?.reply("Продолжим?", {
+const getContinuationMenu = async (ctx) => {
+    await ctx?.reply("Продолжим?", {
         resize_keyboard: true,
         parse_mode: 'html',
         reply_markup: {
