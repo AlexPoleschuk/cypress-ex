@@ -1025,6 +1025,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"config@npm:^3.3.11":
+  version: 3.3.11
+  resolution: "config@npm:3.3.11"
+  dependencies:
+    json5: "npm:^2.2.3"
+  checksum: c0e1e855aa3e15c764e469f4da0e84df64fe182e135c3fa820f875950b5eed6d8357b6ec5587cb71130655d4a63d07d95b48d96659f09abf0d9c87b768649c92
+  languageName: node
+  linkType: hard
+
 "core-util-is@npm:1.0.2":
   version: 1.0.2
   resolution: "core-util-is@npm:1.0.2"
@@ -1083,6 +1092,7 @@ __metadata:
   dependencies:
     "@types/jest": "npm:^29.5.12"
     "@types/node-telegram-bot-api": "npm:^0.64.2"
+    config: "npm:^3.3.11"
     cypress: "npm:^13.6.4"
     cypress-dotenv: "npm:^2.0.0"
     cypress-multi-reporters: "npm:^1.6.4"
@@ -2775,6 +2785,15 @@ __metadata:
   version: 5.0.1
   resolution: "json-stringify-safe@npm:5.0.1"
   checksum: 7dbf35cd0411d1d648dceb6d59ce5857ec939e52e4afc37601aa3da611f0987d5cee5b38d58329ceddf3ed48bd7215229c8d52059ab01f2444a338bf24ed0f37
+  languageName: node
+  linkType: hard
+
+"json5@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "json5@npm:2.2.3"
+  bin:
+    json5: lib/cli.js
+  checksum: 5a04eed94810fa55c5ea138b2f7a5c12b97c3750bc63d11e511dcecbfef758003861522a070c2272764ee0f4e3e323862f386945aeb5b85b87ee43f084ba586c
   languageName: node
   linkType: hard
 
