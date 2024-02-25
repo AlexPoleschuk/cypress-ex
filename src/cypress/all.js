@@ -3,16 +3,16 @@ import cypress from "cypress";
 import config from '../../cypress.config.js';
 import { utils } from '../lib/index.js';
 
-const runAuthTest = async (ctx) => {
+const runAllTests = async (ctx) => {
     if (ctx) {
-        await ctx.reply('Тест авторизации');
+        await ctx.reply('Запуск всех тестов');
 
         const interval = utils.showProcess(ctx);
 
         try {
             const results = await cypress.run({
                 ...config,
-                spec: 'cypress/e2e/auth.cy.js',
+                spec: 'cypress/e2e/*.cy.js',
             }).then(results => {
                 if (results?.status === 'failed') {
                     return null;
@@ -39,4 +39,4 @@ const runAuthTest = async (ctx) => {
     }
 }
 
-export default runAuthTest;
+export default runAllTests;

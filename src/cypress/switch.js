@@ -1,11 +1,13 @@
 // @ts-nocheck
 import cypress from "cypress";
 import config from '../../cypress.config.js';
-import { getResultsMarkdown } from '../lib/index.js';
+import { utils } from '../lib/index.js';
 
 const runSwitchProfileTest = async (ctx) => {
     try {
-        ctx.reply('В процессе: Тест переключения профиля...');
+        ctx.reply('Тест переключения профиля');
+
+        const interval = utils.showProcess(ctx);
 
         const results = await cypress.run({
             ...config,
@@ -20,13 +22,16 @@ const runSwitchProfileTest = async (ctx) => {
             console.error(e);
         });
 
-        const formattedAnswer = getResultsMarkdown(results);
+        const chatId = utils.getChatId(ctx);
+        const htmlAnswer = utils.getResultsHtml(ctx, results);
 
-        ctx.reply(formattedAnswer);
+        await ctx.telegram.sendMessage(
+            chatId,
+            htmlAnswer,
+            { parse_mode: 'html' },
+        );
 
-        setTimeout(() => {
-            ctx.reply(menu.getContinuationMenu());
-        }, 1000);
+        await utils.hideProcess(ctx, interval);
     } catch (e) {
         console.error(e);
     }
