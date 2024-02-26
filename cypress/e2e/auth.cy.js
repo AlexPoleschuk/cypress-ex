@@ -8,7 +8,7 @@ import { hideBackgroundRequests } from "../support/hideBadCalls";
 
 hideBackgroundRequests();
 
-describe('Авторизация на сайте citilink.ru', () => {
+describe('Авторизация', () => {
   const username = Cypress.env().username || defaultAuth.username;
   const password = Cypress.env().password || defaultAuth.password;
   const environment = Cypress.env().env || EnvType.STAGE;
@@ -21,5 +21,8 @@ describe('Авторизация на сайте citilink.ru', () => {
 
   it('Авторизация', () => {
     cy.fullLogin(environment, username, password);
+
+    cy.visit('/profile/');
+    cy.get('Мой профиль').should('be.visible');
   });
 });
