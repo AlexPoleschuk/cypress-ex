@@ -37,7 +37,20 @@ const showProcess = (ctx) => {
     const chatId = getChatId(ctx);
     const messageId = getChatMessageId(ctx);
 
-    sleep(500);
+    return setInterval(async () => {
+        i = i < 15 ? i + 1 : 1;
+
+        try {
+            await ctx.telegram.editMessageText(
+                chatId,
+                messageId,
+                null,
+                `🔥🔥${emj.repeat(i)}🚀`,
+            );
+        } catch (e) {
+            console.error(e);
+        }
+    }, 500);
 };
 
 const hideProcess = async (ctx, interval) => {
@@ -46,7 +59,11 @@ const hideProcess = async (ctx, interval) => {
     const chatId = getChatId(ctx);
     const messageId = getChatMessageId(ctx);
 
-    sleep(500);
+    try {
+        await ctx.telegram.deleteMessage(chatId, messageId);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 const getResultsHtml = (ctx, results) => {
