@@ -32,6 +32,10 @@ const runAllTests = async (ctx) => {
                 { parse_mode: 'html' },
             );
 
+            if (results?.totalFailed > 0) {
+                await utils.sendMediaFailtureResults(ctx, results, `all`);
+            }
+
             await utils.hideProcess(ctx, interval);
         } catch (e) {
             console.error(e);
