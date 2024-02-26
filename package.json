@@ -1,5 +1,7 @@
 {
   "name": "cypress-ex",
+  "version": "0.0.1",
+  "description": "Cypress tests with telegram bot",
   "author": {
     "name": "Alex Poleschuk",
     "email": "imalexp@ya.ru"
