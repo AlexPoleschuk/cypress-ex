@@ -31,6 +31,17 @@ const getMessageDate = (ctx) => {
     return new Date();
 }
 
+const rmPrevMessage = async (ctx) => {
+    const chatId = getChatId(ctx);
+    const messageId = getChatMessageId(ctx);
+
+    try {
+        await ctx.telegram.deleteMessage(chatId, messageId);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 const showProcess = (ctx) => {
     let i = 0;
     const emj = `🔥`;
@@ -56,11 +67,8 @@ const showProcess = (ctx) => {
 const hideProcess = async (ctx, interval) => {
     clearInterval(interval);
 
-    const chatId = getChatId(ctx);
-    const messageId = getChatMessageId(ctx);
-
     try {
-        await ctx.telegram.deleteMessage(chatId, messageId);
+        await rmPrevMessage(ctx);
     } catch (e) {
         console.error(e);
     }
@@ -131,11 +139,12 @@ const sendMediaFailtureResults = async (ctx, results, testEntity) => {
 }
 export {
     getChatId,
-    getResultsHtml,
     getChatMessageId,
     getMessageDate,
-    showProcess,
+    getResultsHtml,
     hideProcess,
-    sleep,
+    rmPrevMessage,
     sendMediaFailtureResults,
+    showProcess,
+    sleep,
 };
