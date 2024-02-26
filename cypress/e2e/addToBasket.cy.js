@@ -1,15 +1,20 @@
 // @ts-nocheck
 /// <reference types="cypress" />
 
+import defaultAuth from "../fixtures/auth.ts";
 import { EnvType } from "../fixtures/environment.ts";
 import { hideBackgroundRequests } from "../support/hideBadCalls.js";
 
 hideBackgroundRequests();
 
 describe('Добавление товара в корзину (stage)', () => {
+    const username = Cypress.env().username || defaultAuth.username;
+    const password = Cypress.env().password || defaultAuth.password;
+
     before(() => {
         cy.setDesktopView();
-        cy.fullLogin(EnvType.STAGE);
+        cy.fullLogin(EnvType.STAGE, username, password);
+        cy.visit('/b2b/companies/switchContractor/?companyId=user&_from=/?_action=login&_success_login=1');
     });
 
     it('Покупка смартфона', () => {
