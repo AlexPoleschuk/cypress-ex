@@ -3,6 +3,7 @@ import { Telegraf } from 'telegraf';
 import config from 'config';
 
 import {
+    runAddToBasketTest,
     runAllTests,
     runAuthTest,
     runSwitchProfileTest,
@@ -27,6 +28,7 @@ bot.command('help', (ctx) => {
 bot.action('all_test', runAllTests);
 bot.action('auth_test', runAuthTest);
 bot.action('switch_test', runSwitchProfileTest);
+bot.action('add_to_basket_test', runAddToBasketTest);
 
 bot.launch();
 
