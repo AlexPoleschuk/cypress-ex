@@ -1,3 +1,11 @@
+import getDirFiles from "../reporter/lib/getDirFiles.js";
+
+const sleep = (ms) => (
+    new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    })
+);
+
 const getChatId = (ctx) => {
     if (ctx) {
         return ctx.update.callback_query.message.chat.id;
@@ -64,10 +72,39 @@ const getResultsHtml = (ctx, results) => {
     `);
 };
 
-const sleep = (ms) => (
-    new Promise((resolve) => {
-        setTimeout(resolve, ms);
-    })
-);
+const sendMediaFailtureResults = async (ctx, results, testEntity) => {
+    if (results?.totalFailed > 0) {
+        const screenshots = getDirFiles(`cypress/screenshots/${testEntity}.cy.js`);
+        const videos = getDirFiles(`cypress/videos`);
 
-export { getChatId, getResultsHtml, getChatMessageId, getMessageDate, showProcess, hideProcess, sleep };
+        const screenList = screenshots.map((item) => ({
+            type: 'photo',
+            media: {
+                source: `cypress/screenshots/${testEntity}.cy.js/${item}`,
+            }
+        }));
+
+        const videosList = videos.map((item) => ({
+            type: 'video',
+            media: {
+                source: `cypress/videos/${item}`,
+                filename: `${item}_test_failture.mp4`,
+            }
+        }));
+
+        await ctx.replyWithMediaGroup([
+            ...screenList,
+            ...videosList
+        ]);
+    }
+}
+export {
+    getChatId,
+    getResultsHtml,
+    getChatMessageId,
+    getMessageDate,
+    showProcess,
+    hideProcess,
+    sleep,
+    sendMediaFailtureResults,
+};
