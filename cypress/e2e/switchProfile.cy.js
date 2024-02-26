@@ -11,14 +11,11 @@ hideBackgroundRequests();
 describe('Переключение профиля на b2c пользователя', () => {
     const username = Cypress.env().username || defaultAuth.username;
     const password = Cypress.env().password || defaultAuth.password;
-    const environment = Cypress.env().env || EnvType.STAGE;
-
-    before(() => {
-        cy.goToMainPage(environment).setMobileView();;
-    });
 
     it('Переключение профиля', () => {
-        cy.fullLogin(environment, username, password);
+        cy.setMobileView();
+        cy.fullLogin(EnvType.STAGE, username, password);
+        cy.visit('/b2b/companies/switchContractor/?companyId=user&_from=/?_action=login&_success_login=1');
 
         cy.contains("Профиль")
             .click()

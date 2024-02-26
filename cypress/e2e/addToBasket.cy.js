@@ -11,13 +11,11 @@ describe('Добавление товара в корзину (stage)', () => {
     const username = Cypress.env().username || defaultAuth.username;
     const password = Cypress.env().password || defaultAuth.password;
 
-    before(() => {
+    it('Покупка смартфона', () => {
         cy.setDesktopView();
         cy.fullLogin(EnvType.STAGE, username, password);
         cy.visit('/b2b/companies/switchContractor/?companyId=user&_from=/?_action=login&_success_login=1');
-    });
 
-    it('Покупка смартфона', () => {
         cy.visit('/catalog/smartfony--premium/')
             .log('Переход в категорию Смартфоны');
 

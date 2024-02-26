@@ -13,16 +13,12 @@ describe('Авторизация', () => {
   const password = Cypress.env().password || defaultAuth.password;
   const environment = Cypress.env().env || EnvType.STAGE;
 
-  before(() => {
-    cy.setDesktopView();
-
-    cy.goToMainPage(environment);
-  });
-
   it('Авторизация', () => {
-    cy.fullLogin(environment, username, password);
+    cy.setDesktopView();
+    cy.goToMainPage(environment);
+    cy.fullLogin(environment, username, password + '123');
 
     cy.visit('/profile/');
-    cy.get('Мой профиль').should('be.visible');
+    cy.contains('Мой профиль').log('Тест завершен успешно!');
   });
 });
