@@ -16,7 +16,7 @@ describe('Авторизация', () => {
   it('Авторизация', () => {
     cy.setDesktopView();
     cy.goToMainPage(environment);
-    cy.fullLogin(environment, username, password + '123');
+    cy.fullLogin(environment, username, password);
 
     cy.visit('/profile/');
     cy.contains('Мой профиль').log('Тест завершен успешно!');

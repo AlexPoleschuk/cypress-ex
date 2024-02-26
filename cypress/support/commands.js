@@ -36,7 +36,7 @@ Cypress.Commands.add('fullLogin', (env, login, password) => {
 Cypress.Commands.add('clearBasket', () => {
     cy.visit('/order');
 
-    cy.get('a').filter('[href="/order/"]').contains("Корзина").then((btn) => {
+    cy.get('a').contains("Корзина").then((btn) => {
         if (parseInt(btn.attr('data-meta-count'), 10) > 0) {
             cy.get('button')
                 .contains("Очистить корзину")

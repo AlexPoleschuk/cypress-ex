@@ -1,4 +1,5 @@
 import getDirFiles from "../reporter/lib/getDirFiles.js";
+import walkDir from "../reporter/lib/walkDir.js";
 
 const sleep = (ms) => (
     new Promise((resolve) => {
@@ -39,12 +40,16 @@ const showProcess = (ctx) => {
     return setInterval(async () => {
         i = i < 15 ? i + 1 : 1;
 
-        await ctx.telegram.editMessageText(
-            chatId,
-            messageId,
-            null,
-            `🔥🔥${emj.repeat(i)}🚀`,
-        );
+        try {
+            await ctx.telegram.editMessageText(
+                chatId,
+                messageId,
+                null,
+                `🔥🔥${emj.repeat(i)}🚀`,
+            );
+        } catch (e) {
+            console.error(e);
+        }
     }, 500);
 };
 
@@ -54,7 +59,11 @@ const hideProcess = async (ctx, interval) => {
     const chatId = getChatId(ctx);
     const messageId = getChatMessageId(ctx);
 
-    await ctx.telegram.deleteMessage(chatId, messageId);
+    try {
+        await ctx.telegram.deleteMessage(chatId, messageId);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 const getResultsHtml = (ctx, results) => {
@@ -72,25 +81,47 @@ const getResultsHtml = (ctx, results) => {
     `);
 };
 
-const sendMediaFailtureResults = async (ctx, results, testEntity) => {
-    if (results?.totalFailed > 0) {
-        const screenshots = getDirFiles(`cypress/screenshots/${testEntity}.cy.js`);
-        const videos = getDirFiles(`cypress/videos`);
+const getPhotoResults = async (testEntity) => {
+    let screenshots = [];
 
-        const screenList = screenshots.map((item) => ({
+    if (testEntity === 'all') {
+        screenshots = await walkDir('cypress/screenshots');
+    } else {
+        screenshots = getDirFiles(`cypress/screenshots/${testEntity}.cy.js`);
+    }
+
+    if (screenshots.length > 0) {
+        return screenshots.map((item) => ({
             type: 'photo',
             media: {
-                source: `cypress/screenshots/${testEntity}.cy.js/${item}`,
+                source: testEntity === 'all' ? item : `cypress/screenshots/${testEntity}.cy.js/${item}`,
             }
         }));
+    }
 
-        const videosList = videos.map((item) => ({
+    return [];
+};
+
+const getVideoResults = () => {
+    const videos = getDirFiles(`cypress/videos`);
+
+    if (videos.length > 0) {
+        return videos.map((item) => ({
             type: 'video',
             media: {
                 source: `cypress/videos/${item}`,
                 filename: `${item}_test_failture.mp4`,
             }
         }));
+    }
+
+    return [];
+}
+
+const sendMediaFailtureResults = async (ctx, results, testEntity) => {
+    if (results?.totalFailed > 0) {
+        const screenList = await getPhotoResults(testEntity);
+        const videosList = testEntity === 'all' ? [] : getVideoResults();
 
         await ctx.replyWithMediaGroup([
             ...screenList,

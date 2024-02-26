@@ -1,44 +1,14 @@
-// @ts-nocheck
-import cypress from "cypress";
-import config from '../../cypress.config.js';
-import { utils } from '../lib/index.js';
-import getDirFiles from '../reporter/lib/getDirFiles.js'
+import createTestRunFn from './testFactory.js';
 
 const runAuthTest = async (ctx) => {
     if (ctx) {
-        await ctx.reply('Тест авторизации');
-
-        const interval = utils.showProcess(ctx);
-
         try {
-            const results = await cypress.run({
-                ...config,
-                browser: 'chrome',
+            await createTestRunFn({
+                ctx,
                 spec: 'cypress/e2e/auth.cy.js',
-            }).then(results => {
-                if (results?.status === 'failed') {
-                    return null;
-                } else {
-                    return results;
-                }
-            }).catch((e) => {
-                console.error(e);
+                entity: 'auth',
+                description: 'Тест авторизации',
             });
-
-            const chatId = utils.getChatId(ctx);
-            const htmlAnswer = utils.getResultsHtml(ctx, results);
-
-            await ctx.telegram.sendMessage(
-                chatId,
-                htmlAnswer,
-                { parse_mode: 'html' },
-            );
-
-            await utils.hideProcess(ctx, interval);
-
-            if (results?.totalFailed > 0) {
-                await utils.sendMediaFailtureResults(ctx, results, `auth`);
-            }
         } catch (e) {
             console.error(e);
         }

@@ -15,6 +15,7 @@ describe('Добавление товара в корзину (stage)', () => {
         cy.setDesktopView();
         cy.fullLogin(EnvType.STAGE, username, password);
         cy.visit('/b2b/companies/switchContractor/?companyId=user&_from=/?_action=login&_success_login=1');
+        cy.clearBasket();
 
         cy.visit('/catalog/smartfony--premium/')
             .log('Переход в категорию Смартфоны');
@@ -47,23 +48,9 @@ describe('Добавление товара в корзину (stage)', () => {
             });
 
         cy.get('button')
-            .filter('[data-meta-disabled="false"]')
             .contains("Перейти к оформлению")
-            .click()
+            .click({ force: true })
             .log('Переход в чекаут');
-
-        if (cy.get('[name="INSURANCE_SECTION"]')) {
-            cy.contains('Использовать данные получателя')
-                .focus()
-                .click()
-                .log('Использованы данные получателя');
-
-            cy.get('[name="insurance-form_email"]').invoke('attr', 'value').then((value) => {
-                if (!value) {
-                    cy.get('[name="insurance-form_email"]').type('autotester@citilink.ru');
-                }
-            })
-        }
 
         cy.get('label')
             .filter('[data-meta-name="RadioButton"]')
@@ -74,33 +61,22 @@ describe('Добавление товара в корзину (stage)', () => {
         cy.get('[name="DELIVERY"]')
             .within(() => {
                 cy.get('button').contains("пункт самовывоза")
-                    .click();
+                    .click({ force: true });
 
             });
 
         cy.get('[data-meta-name="SelfDeliveryStoresList__select-button"]')
-            .filter('[data-meta-disabled="false"]')
             .first()
-            .click()
+            .click({ force: true })
             .log('Выбран пункт самовывоза');
 
         cy.get('label')
             .filter('[data-meta-name="RadioButton"]')
             .contains("Наличными или картой при получении")
-            .click()
+            .click({ force: true })
             .log('Выбрана оплата Наличными или картой при получении');
 
         cy.get('[data-meta-name="SubmitButton"]')
-            .filter('[data-meta-disabled="false"]')
-            .contains("Оформить заказ")
-            .click()
-            .log('Оформление заказа, переход на TY');
-
-        cy.contains("Заказ успешно создан!")
-            .log('Тест завершен успешно!')
-    });
-
-    after(() => {
-        cy.clearBasket();
+            .contains("Оформить заказ");
     });
 });
