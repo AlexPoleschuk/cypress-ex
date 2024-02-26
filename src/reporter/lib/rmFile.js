@@ -1,4 +1,5 @@
-const { unlink } = require('fs/promises');
+// @ts-nocheck
+import { unlink } from "fs/promises";
 
 async function rmFile(path) {
     try {

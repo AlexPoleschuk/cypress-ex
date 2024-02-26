@@ -2,6 +2,7 @@
 import cypress from "cypress";
 import config from '../../cypress.config.js';
 import { utils } from '../lib/index.js';
+import { getContinuationMenu } from "../lib/menu.js";
 
 const createTestRunFn = async ({
     ctx,
@@ -43,6 +44,8 @@ const createTestRunFn = async ({
             }
 
             await utils.hideProcess(ctx, interval);
+
+            await getContinuationMenu(ctx);
         } catch (e) {
             console.error(e);
         }

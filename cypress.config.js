@@ -1,5 +1,6 @@
+// @ts-nocheck
 import { defineConfig } from "cypress";
-import fs from "fs";
+import * as fs from "fs";
 
 const config = defineConfig({
     retries: 3,
