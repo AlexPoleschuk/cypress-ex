@@ -12,6 +12,9 @@ const getMainMenu = async (ctx) => {
                     { text: "Покупка (товар + услуга)", callback_data: "add_to_basket_test" },
                 ],
                 [
+                    { text: "Авторизация c ошибкой", callback_data: "fail_test" },
+                ],
+                [
                     { text: "Запустить все", callback_data: "all_test" },
                 ],
             ]

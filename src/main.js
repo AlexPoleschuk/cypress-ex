@@ -7,6 +7,7 @@ import {
     runAllTests,
     runAuthTest,
     runSwitchProfileTest,
+    runFailAuthTest,
 } from './cypress/index.js'
 
 import { menu } from './lib/index.js';
@@ -32,6 +33,7 @@ bot.action('all_test', runAllTests);
 bot.action('auth_test', runAuthTest);
 bot.action('switch_test', runSwitchProfileTest);
 bot.action('add_to_basket_test', runAddToBasketTest);
+bot.action('fail_test', runFailAuthTest);
 
 bot.launch();
 
