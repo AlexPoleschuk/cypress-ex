@@ -32,6 +32,8 @@ bot.action('fail_test', runFailAuthTest);
 bot.action('next_test', smalltalk.getNext);
 bot.action('end', smalltalk.getBye);
 
+bot.botInfo = await bot.telegram.getMe();
+console.log("Bot started");
 bot.launch();
 
 process.once('SIGINT', () => bot.stop('SIGINT'));
