@@ -1,6 +1,8 @@
 // @ts-nocheck
+import "dotenv/config.js";
 import { Telegraf } from 'telegraf';
 import config from 'config';
+import { message } from 'telegraf/filters';
 
 import {
     runAddToBasketTest,
@@ -12,6 +14,7 @@ import {
 
 import { menu, smalltalk } from './lib/index.js';
 import { sleep } from './lib/utils.js';
+import { initLogin, mapMessage } from './options/login.js'
 
 const sleepStub = () => sleep(500);
 
@@ -29,9 +32,17 @@ bot.action('switch_test', runSwitchProfileTest);
 bot.action('add_to_basket_test', runAddToBasketTest);
 bot.action('fail_test', runFailAuthTest);
 
+bot.action('options', menu.getOptionsMenu);
+bot.action('authorize', initLogin);
+
 bot.action('next_test', smalltalk.getNext);
+bot.action('back', menu.getMainMenu);
 bot.action('end', smalltalk.getBye);
 
+bot.on(message('text'), mapMessage);
+
+bot.botInfo = await bot.telegram.getMe();
+console.log("Bot started");
 bot.launch();
 
 process.once('SIGINT', () => bot.stop('SIGINT'));

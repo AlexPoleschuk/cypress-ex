@@ -1,7 +1,7 @@
 // @ts-nocheck
 /// <reference types="cypress" />
 
-import defaultAuth from "../fixtures/auth.ts";
+import defaultAuth from "../fixtures/auth.json";
 import { EnvType } from "../fixtures/environment.ts";
 import { hideBackgroundRequests } from "../support/hideBadCalls.js";
 

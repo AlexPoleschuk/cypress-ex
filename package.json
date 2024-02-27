@@ -11,7 +11,7 @@
     "url": "https://github.com/AlexPoleschuk/cypress-ex"
   },
   "license": "MIT",
-  "packageManager": "yarn@4.0.2",
+  "packageManager": "yarn@4.1.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.20",
     "cypress-dotenv": "^2.0.0",
     "dotenv": "^16.4.5",
     "nodemon": "^3.1.0",

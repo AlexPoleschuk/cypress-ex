@@ -17,6 +17,9 @@ const getMainMenu = async (ctx) => {
                 [
                     { text: "Запустить все", callback_data: "all_test" },
                 ],
+                [
+                    { text: "Настройки", callback_data: "options" },
+                ],
             ]
         }
     });
@@ -37,4 +40,19 @@ const getContinuationMenu = async (ctx) => {
     });
 };
 
-export { getMainMenu, getContinuationMenu };
+const getOptionsMenu = async (ctx) => {
+    await ctx?.reply("Настройки", {
+        resize_keyboard: true,
+        parse_mode: 'html',
+        reply_markup: {
+            inline_keyboard: [
+                [
+                    { text: "Авторизоваться", callback_data: "authorize" },
+                    { text: "Назад", callback_data: "back" },
+                ],
+            ]
+        }
+    });
+};
+
+export { getMainMenu, getContinuationMenu, getOptionsMenu };
