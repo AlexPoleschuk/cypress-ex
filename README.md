@@ -10,7 +10,7 @@ Easy Setup:
 
 3. or use `--env` variables with commands, like:
 
-   `yarn test:run:auth --env username=?????,password=?????`
+   `yarn test:run:auth --env env=?????,username=?????,password=?????`
 
 ---
 
@@ -24,7 +24,12 @@ To run tests in console:
 
 - `yarn test:run:auth`
 - `yarn test:run:basket`
+- `yarn test:run:switch`
 
   (all)
 
 - `yarn test:run:all`
+
+To start in server mode:
+- `yarn start`
+- `yarn dev`
