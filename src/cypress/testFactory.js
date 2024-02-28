@@ -1,7 +1,7 @@
 // @ts-nocheck
 import cypress from "cypress";
 import config from '../../cypress.config.js';
-import { utils } from '../lib/index.js';
+import { utils, progressBars } from '../lib/index.js';
 import { getContinuationMenu } from "../lib/menu.js";
 
 const createTestRunFn = async ({
@@ -13,7 +13,7 @@ const createTestRunFn = async ({
     if (ctx) {
         await ctx.reply(description);
 
-        const interval = utils.showProcess(ctx);
+        const interval = progressBars.showLineProcess(ctx);
 
         try {
             const results = await cypress.run({
@@ -43,7 +43,7 @@ const createTestRunFn = async ({
                 await utils.sendMediaFailtureResults(ctx, results, entity);
             }
 
-            await utils.hideProcess(ctx, interval);
+            await progressBars.hideProcess(ctx, interval);
 
             await getContinuationMenu(ctx);
         } catch (e) {
