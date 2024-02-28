@@ -1,20 +1,16 @@
-import {
-    getDirFiles,
-    walkDir,
-} from "../reporter/lib/index.js";
+import { getDirFiles, walkDir } from "../reporter/lib/index.js";
 
-const sleep = (ms) => (
+const sleep = (ms) =>
     new Promise((resolve) => {
         setTimeout(resolve, ms);
-    })
-);
+    });
 
 const getChatId = (ctx) => {
     if (ctx) {
         return ctx.update.callback_query.message.chat.id;
     }
 
-    return '';
+    return "";
 };
 
 const getChatMessageId = (ctx) => {
@@ -22,7 +18,7 @@ const getChatMessageId = (ctx) => {
         return ctx.update.callback_query.message.message_id;
     }
 
-    return '';
+    return "";
 };
 
 const getMessageDate = (ctx) => {
@@ -31,7 +27,7 @@ const getMessageDate = (ctx) => {
     }
 
     return new Date();
-}
+};
 
 const rmPrevMessage = async (ctx) => {
     const chatId = getChatId(ctx);
@@ -42,13 +38,13 @@ const rmPrevMessage = async (ctx) => {
     } catch (e) {
         console.error(e);
     }
-}
+};
 
 const getResultsHtml = (ctx, results) => {
     const isAnyoneFailed = results.totalFailed > 0;
     const headerEmj = isAnyoneFailed ? `💊` : `🍀`;
 
-    return (`
+    return `
     <u>${headerEmj}<strong>Results</strong>${headerEmj}</u>
     ----------------------------
     <b>Total:</b> ${results.totalTests}
@@ -56,24 +52,27 @@ const getResultsHtml = (ctx, results) => {
     <b>Failed:</b> ${results.totalFailed}
     ----------------------------
     <i>🏁${isAnyoneFailed ? `Некоторые тесты завершились неудачно` : `Все тесты успешно пройдены.`}🏁</i>
-    `);
+    `;
 };
 
 const getPhotoResults = async (testEntity) => {
     let screenshots = [];
 
-    if (testEntity === 'all') {
-        screenshots = await walkDir('cypress/screenshots');
+    if (testEntity === "all") {
+        screenshots = await walkDir("cypress/screenshots");
     } else {
         screenshots = getDirFiles(`cypress/screenshots/${testEntity}.cy.js`);
     }
 
     if (screenshots.length > 0) {
         return screenshots.map((item) => ({
-            type: 'photo',
+            type: "photo",
             media: {
-                source: testEntity === 'all' ? item : `cypress/screenshots/${testEntity}.cy.js/${item}`,
-            }
+                source:
+                    testEntity === "all"
+                        ? item
+                        : `cypress/screenshots/${testEntity}.cy.js/${item}`,
+            },
         }));
     }
 
@@ -85,28 +84,25 @@ const getVideoResults = () => {
 
     if (videos.length > 0) {
         return videos.map((item) => ({
-            type: 'video',
+            type: "video",
             media: {
                 source: `cypress/videos/${item}`,
                 filename: `${item}_test_failture.mp4`,
-            }
+            },
         }));
     }
 
     return [];
-}
+};
 
 const sendMediaFailtureResults = async (ctx, results, testEntity) => {
     if (results?.totalFailed > 0) {
         const screenList = await getPhotoResults(testEntity);
-        const videosList = testEntity === 'all' ? [] : getVideoResults();
+        const videosList = testEntity === "all" ? [] : getVideoResults();
 
-        await ctx.replyWithMediaGroup([
-            ...screenList,
-            ...videosList
-        ]);
+        await ctx.replyWithMediaGroup([...screenList, ...videosList]);
     }
-}
+};
 export {
     getChatId,
     getChatMessageId,

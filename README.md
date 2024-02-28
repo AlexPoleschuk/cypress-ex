@@ -31,5 +31,6 @@ To run tests in console:
 - `yarn test:run:all`
 
 To start in server mode:
+
 - `yarn start`
 - `yarn dev`

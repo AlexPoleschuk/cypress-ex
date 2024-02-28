@@ -8,10 +8,10 @@ async function clearDir(dir) {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
 
-    const projectFolder = join(__dirname, 'reports');
+    const projectFolder = join(__dirname, "reports");
     const dirCreation = await mkdir(projectFolder, { recursive: true });
 
     return dirCreation;
-};
+}
 
 export default clearDir;

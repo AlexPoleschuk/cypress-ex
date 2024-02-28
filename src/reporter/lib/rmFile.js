@@ -5,8 +5,8 @@ async function rmFile(path) {
         await unlink(path);
         console.log(`successfully deleted ${path}`);
     } catch (error) {
-        console.error('there was an error:', error.message);
+        console.error("there was an error:", error.message);
     }
-};
+}
 
 export default rmFile;
