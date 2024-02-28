@@ -34,3 +34,6 @@ To start in server mode:
 
 - `yarn start`
 - `yarn dev`
+
+To format code with prettier:
+- `yarn prettier-format`
