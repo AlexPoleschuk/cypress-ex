@@ -12,12 +12,14 @@ const showRocketProcess = (ctx, timeout = DEFAULT_TIMEOUT) => {
         i = i < 15 ? i + 1 : 1;
 
         try {
-            await ctx.telegram.editMessageText(
-                chatId,
-                messageId,
-                null,
-                `🔥🔥${emj.repeat(i)}🚀`,
-            );
+            if (messageId) {
+                await ctx.telegram.editMessageText(
+                    chatId,
+                    messageId,
+                    null,
+                    `🔥🔥${emj.repeat(i)}🚀`,
+                );
+            }
         } catch (e) {
             console.error(e);
         }
@@ -36,12 +38,14 @@ const showLineProcess = (ctx, timeout = DEFAULT_TIMEOUT) => {
         i = i < lineWidth ? i + 1 : 0;
 
         try {
-            await ctx.telegram.editMessageText(
-                chatId,
-                messageId,
-                null,
-                `${doneIcon}`.repeat(i) + `${pendingIcon}`.repeat(lineWidth - i),
-            );
+            if (messageId) {
+                await ctx.telegram.editMessageText(
+                    chatId,
+                    messageId,
+                    null,
+                    `${doneIcon}`.repeat(i) + `${pendingIcon}`.repeat(lineWidth - i),
+                );
+            }
         } catch (e) {
             console.error(e);
         }
