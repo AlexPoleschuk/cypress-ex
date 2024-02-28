@@ -1,11 +1,10 @@
-// @ts-nocheck
-import * as rimraf from "rimraf";
+import { rimraf } from "rimraf";
 import { fileURLToPath } from "url";
 import { mkdir } from "fs/promises";
 import { join, dirname } from "path";
 
 async function clearDir(dir) {
-    rimraf.rimraf(dir);
+    rimraf(dir);
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
 

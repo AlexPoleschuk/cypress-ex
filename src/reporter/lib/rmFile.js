@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { unlink } from "fs/promises";
 
 async function rmFile(path) {

@@ -11,11 +11,10 @@ import {
     runSwitchProfileTest,
 } from './cypress/index.js'
 
-import { menu, smalltalk } from './lib/index.js';
-import { sleep } from './lib/utils.js';
+import { menu, smalltalk, utils } from './lib/index.js';
 import { initLogin, mapMessage } from './options/login.js'
 
-const sleepStub = () => sleep(500);
+const sleepStub = () => utils.sleep(500);
 
 const bot = new Telegraf(config.get("TELEGRAM_TOKEN"), {
     handlerTimeout: Infinity,
