@@ -42,38 +42,6 @@ const rmPrevMessage = async (ctx) => {
     }
 }
 
-const showProcess = (ctx) => {
-    let i = 0;
-    const emj = `🔥`;
-    const chatId = getChatId(ctx);
-    const messageId = getChatMessageId(ctx);
-
-    return setInterval(async () => {
-        i = i < 15 ? i + 1 : 1;
-
-        try {
-            await ctx.telegram.editMessageText(
-                chatId,
-                messageId,
-                null,
-                `🔥🔥${emj.repeat(i)}🚀`,
-            );
-        } catch (e) {
-            console.error(e);
-        }
-    }, 500);
-};
-
-const hideProcess = async (ctx, interval) => {
-    clearInterval(interval);
-
-    try {
-        await rmPrevMessage(ctx);
-    } catch (e) {
-        console.error(e);
-    }
-}
-
 const getResultsHtml = (ctx, results) => {
     const isAnyoneFailed = results.totalFailed > 0;
     const headerEmj = isAnyoneFailed ? `💊` : `🍀`;
@@ -142,9 +110,7 @@ export {
     getChatMessageId,
     getMessageDate,
     getResultsHtml,
-    hideProcess,
     rmPrevMessage,
     sendMediaFailtureResults,
-    showProcess,
     sleep,
 };
