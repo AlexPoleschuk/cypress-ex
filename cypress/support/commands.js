@@ -2,21 +2,21 @@
 /// <reference types="cypress" />
 
 import defaultViewData from "../fixtures/view.ts";
-import origin from "../fixtures/origin.ts"
+import origin from "../fixtures/origin.ts";
 
-Cypress.Commands.add('setDesktopView', () => {
+Cypress.Commands.add("setDesktopView", () => {
     cy.viewport(...defaultViewData.desktop);
 });
 
-Cypress.Commands.add('setMobileView', () => {
+Cypress.Commands.add("setMobileView", () => {
     cy.viewport(...defaultViewData.mobile);
 });
 
-Cypress.Commands.add('goToMainPage', (env) => {
+Cypress.Commands.add("goToMainPage", (env) => {
     cy.visit(origin[env]);
 });
 
-Cypress.Commands.add('login', (login, password) => {
+Cypress.Commands.add("login", (login, password) => {
     cy.get('[data-meta-name="UserButtonContainer"]')
         .contains("Войти")
         .click({ force: true });
@@ -28,19 +28,19 @@ Cypress.Commands.add('login', (login, password) => {
     });
 });
 
-Cypress.Commands.add('fullLogin', (env, login, password) => {
+Cypress.Commands.add("fullLogin", (env, login, password) => {
     cy.goToMainPage(env);
     cy.login(login, password);
 });
 
-Cypress.Commands.add('clearBasket', () => {
-    cy.visit('/order');
+Cypress.Commands.add("clearBasket", () => {
+    cy.visit("/order");
 
-    cy.get('a').contains("Корзина").then((btn) => {
-        if (parseInt(btn.attr('data-meta-count'), 10) > 0) {
-            cy.get('button')
-                .contains("Очистить корзину")
-                .click();
-        }
-    })
+    cy.get("a")
+        .contains("Корзина")
+        .then((btn) => {
+            if (parseInt(btn.attr("data-meta-count"), 10) > 0) {
+                cy.get("button").contains("Очистить корзину").click();
+            }
+        });
 });

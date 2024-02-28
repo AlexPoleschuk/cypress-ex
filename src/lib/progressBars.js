@@ -1,4 +1,4 @@
-import { getChatId, getChatMessageId, rmPrevMessage } from './utils.js';
+import { getChatId, getChatMessageId, rmPrevMessage } from "./utils.js";
 
 const DEFAULT_TIMEOUT = 500;
 
@@ -43,7 +43,8 @@ const showLineProcess = (ctx, timeout = DEFAULT_TIMEOUT) => {
                     chatId,
                     messageId,
                     null,
-                    `${doneIcon}`.repeat(i) + `${pendingIcon}`.repeat(lineWidth - i),
+                    `${doneIcon}`.repeat(i) +
+                        `${pendingIcon}`.repeat(lineWidth - i),
                 );
             }
         } catch (e) {
@@ -60,6 +61,6 @@ const hideProcess = async (ctx, interval) => {
     } catch (e) {
         console.error(e);
     }
-}
+};
 
 export { showLineProcess, showRocketProcess, hideProcess };
