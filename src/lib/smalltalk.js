@@ -4,7 +4,13 @@ import { getMainMenu } from './menu.js'
 const getSalute = async (ctx) => {
     if (ctx) {
         try {
-            await ctx.reply(`Привет!`);
+            await ctx.reply(`
+Привет! 🍀
+
+Команды:
+- /menu
+- /help
+            `);
         }
         catch (e) {
             console.error(e);
@@ -16,7 +22,9 @@ const getHelp = async (ctx) => {
     if (ctx) {
         try {
             await ctx.reply(`
-                - Чтобы начать тестирование, выбери нужное в /menu. \n - Тест выполняется: 🔥🔥🔥🚀. \n - По окончании работы будут выведены результаты 💊/🍀.
+- Чтобы начать тестирование, выбери нужное в /menu.
+- Тест выполняется: активен лоадер 🔥🚀/🟩⬜️.
+- По окончании работы будут выведены результаты 💊/🍀.
             `);
         }
         catch (e) {
