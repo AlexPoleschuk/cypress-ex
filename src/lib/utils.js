@@ -1,5 +1,7 @@
-import getDirFiles from "../reporter/lib/getDirFiles.js";
-import walkDir from "../reporter/lib/walkDir.js";
+import {
+    getDirFiles,
+    walkDir,
+} from "../reporter/lib/index.js";
 
 const sleep = (ms) => (
     new Promise((resolve) => {

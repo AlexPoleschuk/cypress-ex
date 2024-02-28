@@ -1,8 +1,7 @@
 // @ts-nocheck
 import cypress from "cypress";
-import config from '../../cypress.config.js';
-import { utils, progressBars } from '../lib/index.js';
-import { getContinuationMenu } from "../lib/menu.js";
+import config from "../../cypress.config.js";
+import { menu, progressBars, utils } from "../lib/index.js";
 
 const createTestRunFn = async ({
     ctx,
@@ -45,7 +44,7 @@ const createTestRunFn = async ({
 
             await progressBars.hideProcess(ctx, interval);
 
-            await getContinuationMenu(ctx);
+            await menu.getContinuationMenu(ctx);
         } catch (e) {
             console.error(e);
         }

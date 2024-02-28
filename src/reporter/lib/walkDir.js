@@ -1,12 +1,12 @@
 // @ts-nocheck
-import * as fs from 'fs/promises';
-import * as path from 'path';
+import { readdir, stat } from "fs/promises";
+import { join } from "path";
 
 async function walkDir(dir) {
-    let files = await fs.readdir(dir);
+    let files = await readdir(dir);
     files = await Promise.all(files.map(async file => {
-        const filePath = path.join(dir, file);
-        const stats = await fs.stat(filePath);
+        const filePath = join(dir, file);
+        const stats = await stat(filePath);
         if (stats.isDirectory()) return walkDir(filePath);
         else if (stats.isFile()) return filePath;
     }));
