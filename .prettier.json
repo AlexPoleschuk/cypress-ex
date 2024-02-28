@@ -1,0 +1,17 @@
+{
+    "printWidth": 80,
+    "trailingComma": "all",
+    "tabWidth": 4,
+    "singleQuote": false,
+    "singleAttributePerLine": true,
+    "overrides": [
+        {
+            "files": [
+                "*.json"
+            ],
+            "options": {
+                "tabWidth": 2
+            }
+        }
+    ]
+}
