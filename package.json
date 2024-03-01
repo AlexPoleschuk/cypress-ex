@@ -23,7 +23,14 @@
     "test:run:switch": "cypress run --e2e -b chrome -s \"cypress/e2e/switchProfile.cy.js\"",
     "test:run:all": "run-s \"test:run:*\"",
     "prettier": "prettier --list-different --cache './**/*.{js,ts,json,md}'",
-    "prettier-format": "prettier --write --cache './**/*.{js,ts,json,md}'"
+    "prettier-format": "prettier --write --cache './**/*.{js,ts,json,md}'",
+    "postinstall": "simple-git-hooks"
+  },
+  "nano-staged": {
+    "*.{js,ts,json,md}": "prettier --write --cache"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "yarn nano-staged"
   },
   "engines": {
     "node": ">=18"
@@ -34,10 +41,12 @@
     "cypress-dotenv": "^2.0.0",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
+    "nano-staged": "^0.8.0",
     "nodemon": "^3.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
+    "simple-git-hooks": "^2.9.0",
     "typescript": "^5.3.3"
   },
   "dependencies": {
