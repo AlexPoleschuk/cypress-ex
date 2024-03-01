@@ -26,6 +26,12 @@
     "prettier-format": "prettier --write --cache './**/*.{js,ts,json,md}'",
     "prepare": "simple-git-hooks"
   },
+  "nano-staged": {
+    "*.{js,ts,json,md}": "prettier --write --cache"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "yarn nano-staged"
+  },
   "engines": {
     "node": ">=18"
   },
