@@ -24,7 +24,7 @@
     "test:run:all": "run-s \"test:run:*\"",
     "prettier": "prettier --list-different --cache './**/*.{js,ts,json,md}'",
     "prettier-format": "prettier --write --cache './**/*.{js,ts,json,md}'",
-    "prepare": "simple-git-hooks"
+    "postinstall": "simple-git-hooks"
   },
   "nano-staged": {
     "*.{js,ts,json,md}": "prettier --write --cache"
