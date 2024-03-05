@@ -1,6 +1,10 @@
 import * as fs from "fs";
 
-import { getCustomContext, QuestionType } from "../lib/context.js";
+import {
+    clearContext,
+    getCustomContext,
+    QuestionType,
+} from "../lib/context.js";
 
 async function mapAnswerByType(questionType, ctx) {
     switch (questionType) {
@@ -82,6 +86,8 @@ async function mapMessage(ctx) {
     const customContext = getCustomContext();
 
     await mapAnswerByType(customContext.activeQuestion, ctx);
+
+    clearContext();
 }
 
 export { mapMessage };
