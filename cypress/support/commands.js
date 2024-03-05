@@ -3,7 +3,6 @@
 
 import defaultBaseUrl from "../fixtures/baseUrl.json";
 import defaultViewData from "../fixtures/view.ts";
-import origin from "../fixtures/origin.ts";
 import { EnvType, getBaseUrlByEnv } from "../fixtures/environment.ts";
 
 Cypress.Commands.add("setDesktopView", () => {
