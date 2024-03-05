@@ -1,5 +1,3 @@
-//ts-nocheck
-
 import { setActiveQuestionType, QuestionType } from "../lib/context.js";
 
 const setBaseUrl = async (ctx) => {
