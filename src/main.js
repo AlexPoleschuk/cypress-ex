@@ -13,6 +13,7 @@ import {
 
 import { menu, smalltalk, utils } from "./lib/index.js";
 import { initLogin, mapMessage } from "./options/login.js";
+import { setBaseUrl } from "./options/baseUrl.js";
 
 const sleepStub = () => utils.sleep(500);
 
@@ -31,6 +32,7 @@ bot.action("add_to_basket_test", runAddToBasketTest);
 
 bot.action("options", menu.getOptionsMenu);
 bot.action("authorize", initLogin);
+bot.action("setBaseUrl", setBaseUrl);
 
 bot.action("next_test", smalltalk.getNext);
 bot.action("back", menu.getMainMenu);
