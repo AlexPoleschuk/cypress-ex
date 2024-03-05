@@ -1,6 +1,7 @@
-enum QuestionType {
-    BASE_URL = "baseUrl",
-}
+const QuestionType = {
+    AUTH_DATA: "authDataQuestion",
+    BASE_URL: "baseUrlQuestion",
+};
 
 const customContext = {
     activeChatId: "",
@@ -11,7 +12,7 @@ function setActiveChatId(id) {
     customContext.activeChatId = id;
 }
 
-function setActiveQuestionType(message: QuestionType) {
+function setActiveQuestionType(message) {
     customContext.activeQuestion = message;
 }
 
@@ -19,7 +20,13 @@ function getCustomContext() {
     return customContext;
 }
 
+function clearContext() {
+    customContext.activeChatId = "";
+    customContext.activeQuestion = "";
+}
+
 export {
+    clearContext,
     getCustomContext,
     setActiveChatId,
     setActiveQuestionType,

@@ -12,7 +12,8 @@ import {
 } from "./cypress/index.js";
 
 import { menu, smalltalk, utils } from "./lib/index.js";
-import { initLogin, mapMessage } from "./options/login.js";
+import { initLogin } from "./options/login.js";
+import { mapMessage } from "./options/message.js";
 import { setBaseUrl } from "./options/baseUrl.js";
 
 const sleepStub = () => utils.sleep(500);
