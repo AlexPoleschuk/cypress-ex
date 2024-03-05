@@ -47,8 +47,12 @@ const getOptionsMenu = async (ctx) => {
             inline_keyboard: [
                 [
                     { text: "Авторизоваться", callback_data: "authorize" },
-                    { text: "Назад", callback_data: "back" },
+                    {
+                        text: "Установить базовый url",
+                        callback_data: "setBaseUrl",
+                    },
                 ],
+                [{ text: "Назад", callback_data: "back" }],
             ],
         },
     });
