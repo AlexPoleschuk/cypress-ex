@@ -15,11 +15,6 @@ async function mapAnswerByType(questionType, ctx) {
     }
 }
 
-async function mapBaseUrlAnswer(ctx) {
-    const msgText = ctx.update.message.text;
-    console.log("BBBBASE", msgText);
-}
-
 function mapAuthDataAnswer(ctx) {
     if (ctx) {
         try {
@@ -37,6 +32,36 @@ function mapAuthDataAnswer(ctx) {
                     json["password"] = enteredPassword;
                     fs.writeFile(
                         "cypress/fixtures/auth.json",
+                        JSON.stringify(json),
+                        function (err) {
+                            if (err) throw err;
+                            console.log(
+                                'The "data to append" was appended to file!',
+                            );
+                        },
+                    );
+                },
+            );
+        } catch (e) {
+            console.error(e);
+        }
+    }
+}
+
+async function mapBaseUrlAnswer(ctx) {
+    if (ctx) {
+        try {
+            const msgText = ctx.update.message.text;
+
+            fs.readFile(
+                "cypress/fixtures/baseUrl.json",
+                "utf8",
+                function (err, data) {
+                    let json = JSON.parse(data);
+                    json["url"] = msgText;
+
+                    fs.writeFile(
+                        "cypress/fixtures/baseUrl.json",
                         JSON.stringify(json),
                         function (err) {
                             if (err) throw err;
