@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 
 import defaultAuth from "../fixtures/auth.json";
-import { EnvType } from "../fixtures/environment.ts";
+import { EnvType, getBaseUrlByEnv } from "../fixtures/environment.ts";
 import { hideBackgroundRequests } from "../support/hideBadCalls.js";
 
 hideBackgroundRequests();
@@ -13,7 +13,7 @@ describe("Добавление товара в корзину (stage)", () => {
 
     it("Покупка смартфона", () => {
         cy.setDesktopView();
-        cy.fullLogin(EnvType.STAGE, username, password);
+        cy.fullLogin(username, password, getBaseUrlByEnv(EnvType.STAGE));
         cy.visit(
             "/b2b/companies/switchContractor/?companyId=user&_from=/?_action=login&_success_login=1",
         );

@@ -1,7 +1,7 @@
 // @ts-nocheck
 /// <reference types="cypress" />
 
-import { EnvType } from "../fixtures/environment.ts";
+import { EnvType, getBaseUrlByEnv } from "../fixtures/environment.ts";
 import defaultAuth from "../fixtures/auth.json";
 
 import { hideBackgroundRequests } from "../support/hideBadCalls";
@@ -14,7 +14,7 @@ describe("Переключение профиля на b2c пользовате�
 
     it("Переключение профиля", () => {
         cy.setMobileView();
-        cy.fullLogin(EnvType.STAGE, username, password);
+        cy.fullLogin(username, password, getBaseUrlByEnv(EnvType.STAGE));
         cy.visit(
             "/b2b/companies/switchContractor/?companyId=user&_from=/?_action=login&_success_login=1",
         );
