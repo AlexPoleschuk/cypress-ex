@@ -1,8 +1,10 @@
 // @ts-nocheck
 /// <reference types="cypress" />
 
+import defaultBaseUrl from "../fixtures/baseUrl.json";
 import defaultViewData from "../fixtures/view.ts";
 import origin from "../fixtures/origin.ts";
+import { EnvType } from "../fixtures/environment.ts";
 
 Cypress.Commands.add("setDesktopView", () => {
     cy.viewport(...defaultViewData.desktop);
@@ -13,7 +15,13 @@ Cypress.Commands.add("setMobileView", () => {
 });
 
 Cypress.Commands.add("goToMainPage", (env) => {
-    cy.visit(origin[env]);
+    const environment = env || Cypress.env().env || EnvType.CUSTOM;
+
+    if (environment === EnvType.CUSTOM) {
+        cy.visit(defaultBaseUrl.url);
+    } else {
+        cy.visit(origin[env]);
+    }
 });
 
 Cypress.Commands.add("login", (login, password) => {
