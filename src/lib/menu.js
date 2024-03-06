@@ -58,7 +58,6 @@ const getOptionsMenu = async (ctx) => {
                         callback_data: "viewCurrentOptions",
                     },
                 ],
-                [{ text: "Назад", callback_data: "back" }],
             ],
         },
     });

@@ -39,7 +39,6 @@ bot.action("setBaseUrl", setBaseUrl);
 bot.action("viewCurrentOptions", viewCurrent);
 
 bot.action("next_test", smalltalk.getNext);
-bot.action("back", menu.getMainMenu);
 bot.action("end", smalltalk.getBye);
 
 bot.on(message("text"), mapMessage);
