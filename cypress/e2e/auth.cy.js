@@ -17,6 +17,6 @@ describe("Авторизация", () => {
         cy.fullLogin(username, password);
 
         cy.visit("/profile/");
-        cy.contains("Мой профиль").log("Тест завершен успешно!");
+        cy.contains("Профиль").log("Тест завершен успешно!");
     });
 });
