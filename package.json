@@ -33,7 +33,7 @@
     "pre-commit": "yarn nano-staged"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=21"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
