@@ -10,6 +10,7 @@ const getSalute = async (ctx) => {
 Команды:
 - /menu
 - /help
+- /options
             `);
         } catch (e) {
             console.error(e);
