@@ -10,6 +10,7 @@ const getSalute = async (ctx) => {
 Команды:
 - /menu
 - /help
+- /options
             `);
         } catch (e) {
             console.error(e);
@@ -22,6 +23,7 @@ const getHelp = async (ctx) => {
         try {
             await ctx.reply(`
 - Чтобы начать тестирование, выбери нужное в /menu.
+- Установи нужные значения в /options. 
 - Тест выполняется: активен лоадер 🔥🚀/🟩⬜️.
 - По окончании работы будут выведены результаты 💊/🍀.
             `);

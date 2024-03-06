@@ -52,7 +52,12 @@ const getOptionsMenu = async (ctx) => {
                         callback_data: "setBaseUrl",
                     },
                 ],
-                [{ text: "Назад", callback_data: "back" }],
+                [
+                    {
+                        text: "Просмотреть установленные",
+                        callback_data: "viewCurrentOptions",
+                    },
+                ],
             ],
         },
     });
