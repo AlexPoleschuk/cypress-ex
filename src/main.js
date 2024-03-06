@@ -25,6 +25,7 @@ const bot = new Telegraf(config.get("TELEGRAM_TOKEN"), {
 
 bot.command("start", smalltalk.getSalute);
 bot.command("menu", menu.getMainMenu);
+bot.command("options", menu.getOptionsMenu);
 bot.command("help", smalltalk.getHelp);
 
 bot.action("all_test", runAllTests);
