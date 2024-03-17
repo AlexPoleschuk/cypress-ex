@@ -6,9 +6,7 @@ Easy Setup:
 
 1. run command: yarn install
 
-2. add your auth data to `cypress/fixtures/auth.json`
-
-3. or use `--env` variables with commands, like:
+2. use `--env` variables with commands, like:
 
    `yarn test:run:auth --env env=?????,username=?????,password=?????`
 
